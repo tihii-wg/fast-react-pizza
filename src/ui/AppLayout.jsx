@@ -2,7 +2,7 @@
 import React from "react";
 
 import Header from "./Header";
-import CartOverview from "../src/features/cart/CartOverview";
+import CartOverview from "../features/cart/CartOverview";
 import { Outlet } from "react-router-dom";
 
 function AppLayout() {
