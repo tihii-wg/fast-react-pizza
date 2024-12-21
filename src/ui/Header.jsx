@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import SerchOrder from './SerchOrder';
+import UserName from '../features/user/UserName';
 
 function Header() {
   return (
@@ -11,7 +12,7 @@ function Header() {
         Fast React Pizza Co.
       </Link>
       <SerchOrder />
-      <p>Vova</p>
+      <UserName />
     </header>
   );
 }
