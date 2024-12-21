@@ -1,7 +1,10 @@
-import { useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+
+import { useState } from 'react';
 
 function CreateUser() {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -18,7 +21,7 @@ function CreateUser() {
         onChange={(e) => setUsername(e.target.value)}
       />
 
-      {username !== "" && (
+      {username !== '' && (
         <div>
           <button>Start ordering</button>
         </div>
