@@ -3,6 +3,7 @@ import React from 'react';
 
 import { createOrder } from '../../services/apiRestaurant';
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
+import Button from '../../ui/Button';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -48,23 +49,13 @@ function CreateOrder() {
       <Form method="post">
         <div>
           <label>First Name</label>
-          <input
-            className="text-smn w-full rounded-full border border-stone-200 px-4 py-2 text-sm placeholder-stone-400 transition-all duration-500 focus:outline-none focus:ring focus:ring-yellow-300"
-            type="text"
-            name="customer"
-            required
-          />
+          <input className="input" type="text" name="customer" required />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input
-              className="text-smn w-full rounded-full border border-stone-200 px-4 py-2 text-sm placeholder-stone-400 transition-all duration-500 focus:outline-none focus:ring focus:ring-yellow-300"
-              type="tel"
-              name="phone"
-              required
-            />
+            <input className="input" type="tel" name="phone" required />
           </div>
           {formErrors && formErrors.phone}
         </div>
@@ -72,12 +63,7 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input
-              className="text-smn w-full rounded-full border border-stone-200 px-4 py-2 text-sm placeholder-stone-400 transition-all duration-500 focus:outline-none focus:ring focus:ring-yellow-300"
-              type="text"
-              name="address"
-              required
-            />
+            <input className="input" type="text" name="address" required />
           </div>
         </div>
 
@@ -94,12 +80,9 @@ function CreateOrder() {
         </div>
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button
-            disabled={isSubmitting}
-            className="duration-600 inline-block rounded-3xl border-none bg-yellow-400 px-3 py-2 font-semibold uppercase tracking-wide text-stone-800 transition-colors hover:bg-yellow-300 focus:outline-none disabled:cursor-not-allowed"
-          >
+          <Button disabled={isSubmitting}>
             {isSubmitting ? 'Processing..' : 'Order now'}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
@@ -119,10 +102,8 @@ export async function action({ request }) {
 
   if (Object.keys(errors).length > 0) return errors;
 
-  // const newOrder = await createOrder(order);
-  // return redirect(`/order/${newOrder.id}`);
-
-  return null;
+  const newOrder = await createOrder(order);
+  return redirect(`/order/${newOrder.id}`);
 }
 
 export default CreateOrder;
