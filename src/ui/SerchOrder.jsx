@@ -17,7 +17,7 @@ function SerchOrder() {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        className="w-[115px] rounded-full bg-yellow-100 px-3 py-2 text-sm placeholder:text-stone-400 sm:w-[150px] sm:text-base md:w-[400px] lg:w-[500px] xl:w-[600px]"
+        className="w-[115px] rounded-full bg-yellow-100 px-3 py-2 text-sm placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-300 sm:w-[150px] sm:text-base md:w-[400px] lg:w-[500px] xl:w-[600px]"
         placeholder="serch order #"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
