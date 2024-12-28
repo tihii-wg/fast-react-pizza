@@ -1,50 +1,50 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
-import LinkButton from '../../ui/LinkButton';
-import Button from '../../ui/Button';
+import { Link } from "react-router-dom";
+import LinkButton from "../../ui/LinkButton";
+import Button from "../../ui/Button";
 
 const fakeCart = [
-  {
-    pizzaId: 12,
-    name: 'Mediterranean',
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    pizzaId: 6,
-    name: 'Vegetale',
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    pizzaId: 11,
-    name: 'Spinach and Mushroom',
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
+    {
+        pizzaId: 12,
+        name: "Mediterranean",
+        quantity: 2,
+        unitPrice: 16,
+        totalPrice: 32,
+    },
+    {
+        pizzaId: 6,
+        name: "Vegetale",
+        quantity: 1,
+        unitPrice: 13,
+        totalPrice: 13,
+    },
+    {
+        pizzaId: 11,
+        name: "Spinach and Mushroom",
+        quantity: 1,
+        unitPrice: 15,
+        totalPrice: 15,
+    },
 ];
 
 function Cart() {
-  const cart = fakeCart;
+    const cart = fakeCart;
 
-  return (
-    <div>
-      <LinkButton to="/menu">&larr; Back to menu</LinkButton>
+    return (
+        <div>
+            <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
-      <h2>Your cart, %NAME%</h2>
+            <h2>Your cart, %NAME%</h2>
 
-      <div>
-        <Button to="/order/new">Order pizzas</Button>
+            <div>
+                <Button to="/order/new">Order pizzas</Button>
 
-        <Button>Clear cart</Button>
-      </div>
-    </div>
-  );
+                <Button>Clear cart</Button>
+            </div>
+        </div>
+    );
 }
 
 export default Cart;
