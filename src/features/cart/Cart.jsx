@@ -45,12 +45,12 @@ function Cart() {
           <CartItem item={item} key={item.id} />
         ))}
       </ul>
-      <div className="mt-4">
+      <div className="mt-4 space-x-2">
         <Button type="primary" to="/order/new">
           Order pizzas
         </Button>
 
-        <Button>Clear cart</Button>
+        <Button type="secondary">Clear cart</Button>
       </div>
     </div>
   );
