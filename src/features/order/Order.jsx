@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+
 import { getOrder } from "../../services/apiRestaurant";
 import OrderItem from "./OrderItem";
 // Test ID: IIDSAT
@@ -11,40 +12,40 @@ import {
 } from "../../util/helpers";
 import { useLoaderData } from "react-router-dom";
 
-//const order = {
-//  id: "ABCDEF",
-//  customer: "Jonas",
-//  phone: "123456789",
-//  address: "Arroios, Lisbon , Portugal",
-//  priority: true,
-//  estimatedDelivery: "2027-04-25T10:00:00",
-//  cart: [
-//    {
-//      pizzaId: 7,
-//      name: "Napoli",
-//      quantity: 3,
-//      unitPrice: 16,
-//      totalPrice: 48,
-//    },
-//    {
-//      pizzaId: 5,
-//      name: "Diavola",
-//      quantity: 2,
-//      unitPrice: 16,
-//      totalPrice: 32,
-//    },
-//    {
-//      pizzaId: 3,
-//      name: "Romana",
-//      quantity: 1,
-//      unitPrice: 15,
-//      totalPrice: 15,
-//    },
-//  ],
-//  position: "-9.000,38.000",
-//  orderPrice: 95,
-//  priorityPrice: 19,
-//};
+// const order = {
+//   id: "ABCDEF",
+//   customer: "Jonas",
+//   phone: "123456789",
+//   address: "Arroios, Lisbon , Portugal",
+//   priority: true,
+//   estimatedDelivery: "2027-04-25T10:00:00",
+//   cart: [
+//     {
+//       pizzaId: 7,
+//       name: "Napoli",
+//       quantity: 3,
+//       unitPrice: 16,
+//       totalPrice: 48,
+//     },
+//     {
+//       pizzaId: 5,
+//       name: "Diavola",
+//       quantity: 2,
+//       unitPrice: 16,
+//       totalPrice: 32,
+//     },
+//     {
+//       pizzaId: 3,
+//       name: "Romana",
+//       quantity: 1,
+//       unitPrice: 15,
+//       totalPrice: 15,
+//     },
+//   ],
+//   position: "-9.000,38.000",
+//   orderPrice: 95,
+//   priorityPrice: 19,
+// };
 
 function Order() {
   const order = useLoaderData();
@@ -87,11 +88,13 @@ function Order() {
           (Estimated delivery: {formatDate(estimatedDelivery)})
         </p>
       </div>
-      <ul>
+
+      <ul className="divide-y divide-stone-200 border-y px-2">
         {cart.map((item) => (
-          <OrderItem key={item.id} />
+          <OrderItem item={item} key={item.id} />
         ))}
       </ul>
+
       <div className="space-y-2 bg-stone-200 px-6 py-5">
         <p className="text-sm font-medium text-stone-600">
           Price pizza: {formatCurrency(orderPrice)}

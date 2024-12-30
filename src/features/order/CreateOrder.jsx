@@ -2,12 +2,19 @@
 import React from "react";
 
 import { createOrder } from "../../services/apiRestaurant";
-import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+import {
+  Form,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 import Button from "../../ui/Button";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
-  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(str);
+  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
+    str
+  );
 
 const fakeCart = [
   {
@@ -42,18 +49,30 @@ function CreateOrder() {
 
   return (
     <div className="px-4 py-6">
-      <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
+      <h2 className="mb-8 text-xl font-semibold">
+        Ready to order? Let's go!
+      </h2>
 
       <Form method="post">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
-          <input className="input grow" type="text" name="customer" required />
+          <input
+            className="input grow"
+            type="text"
+            name="customer"
+            required
+          />
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Phone number</label>
           <div className="grow">
-            <input className="input w-full" type="tel" name="phone" required />
+            <input
+              className="input w-full"
+              type="tel"
+              name="phone"
+              required
+            />
             {formErrors && (
               <p className="mt-2 rounded-full bg-red-100 px-4 py-2.5 text-xs text-red-600 sm:py-3">
                 {formErrors.phone}
@@ -65,7 +84,12 @@ function CreateOrder() {
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
           <div className="grow">
-            <input className="input w-full" type="text" name="address" required />
+            <input
+              className="input w-full"
+              type="text"
+              name="address"
+              required
+            />
           </div>
         </div>
 
@@ -83,7 +107,11 @@ function CreateOrder() {
           </label>
         </div>
         <div>
-          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+          <input
+            type="hidden"
+            name="cart"
+            value={JSON.stringify(cart)}
+          />
           <Button type="primary" disabled={isSubmitting}>
             {isSubmitting ? "Processing.." : "Order now"}
           </Button>
@@ -103,7 +131,8 @@ export async function action({ request }) {
     priority: data.priority === "on",
   };
   const errors = {};
-  if (!isValidPhone(order.phone)) errors.phone = "Must be a valid number for getting yuor otder!";
+  if (!isValidPhone(order.phone))
+    errors.phone = "Must be a valid number for getting yuor otder!";
 
   if (Object.keys(errors).length > 0) return errors;
 
