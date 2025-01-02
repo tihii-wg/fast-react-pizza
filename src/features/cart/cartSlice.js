@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
 
 // "id": 1,
 // "name": "Margherita",
@@ -21,7 +20,21 @@ const cartSlice = createSlice({
         name: "Mediterranean",
         quantity: 2,
         unitPrice: 16,
-        totatPrice: 32,
+        totalPrice: 32,
+      },
+      {
+        id: 6,
+        name: "Vegetale",
+        quantity: 1,
+        unitPrice: 13,
+        totalPrice: 13,
+      },
+      {
+        id: 11,
+        name: "Spinach and Mushroom",
+        quantity: 1,
+        unitPrice: 15,
+        totalPrice: 15,
       },
     ],
   },

@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-function Button({ children, disabled, to, type }) {
+function Button({ children, disabled, to, type, handleClick }) {
   const base =
     "duration-600 inline-block text-sm rounded-3xl border-none bg-yellow-400   font-semibold  uppercase tracking-wide  text-stone-800 transition-colors hover:bg-yellow-300 focus:outline-none   focus:ring focus:ring-yellow-400 focus:ring-offset-2 disabled:cursor-not-allowed ";
 
@@ -23,7 +23,10 @@ function Button({ children, disabled, to, type }) {
     );
 
   return (
-    <button disabled={disabled} className={style[type]}>
+    <button
+      onClick={handleClick}
+      disabled={disabled}
+      className={style[type]}>
       {children}
     </button>
   );
