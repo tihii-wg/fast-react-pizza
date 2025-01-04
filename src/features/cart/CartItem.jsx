@@ -11,7 +11,6 @@ function CartItem({ item }) {
 
   function handleClick() {
     dispatch(deleteItem(id));
-    console.log("delete");
   }
 
   return (

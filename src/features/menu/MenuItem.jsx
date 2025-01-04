@@ -2,12 +2,27 @@
 import React from "react";
 import { formatCurrency } from "../../util/helpers";
 import Button from "../../ui/Button";
+import { useDispatch } from "react-redux";
+import { addItem } from "../cart/cartSlice";
 
 // eslint-disable-next-line react/prop-types
 function MenuItem({ pizza }) {
   // eslint-disable-next-line react/prop-types
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } =
     pizza;
+
+  const dispatch = useDispatch();
+
+  function handleClick() {
+    const newItem = {
+      id,
+      name,
+      quantity: 1,
+      unitPrice,
+      totalPrice: unitPrice,
+    };
+    dispatch(addItem(newItem));
+  }
 
   return (
     <li className="flex gap-4 py-2">
@@ -29,7 +44,11 @@ function MenuItem({ pizza }) {
               Sold out
             </p>
           )}
-          <Button type="small">Add to cart</Button>
+          {!soldOut && (
+            <Button handleClick={handleClick} type="small">
+              Add to cart
+            </Button>
+          )}
         </div>
       </div>
     </li>

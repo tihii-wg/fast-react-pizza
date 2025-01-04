@@ -76,3 +76,9 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+export const getTotalPizzaPrice = (state) =>
+  state.cart.cart.reduce((acc, item) => acc + item.totalPrice, 0);
+
+export const getTotalPizzaQuantity = (state) =>
+  state.cart.cart.reduce((acc, item) => acc + item.quantity, 0);
