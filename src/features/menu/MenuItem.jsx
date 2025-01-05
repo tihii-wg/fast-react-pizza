@@ -2,8 +2,9 @@
 import React from "react";
 import { formatCurrency } from "../../util/helpers";
 import Button from "../../ui/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../cart/cartSlice";
+import ButtonDelete from "../cart/ButtonDelete";
 
 // eslint-disable-next-line react/prop-types
 function MenuItem({ pizza }) {
@@ -12,6 +13,12 @@ function MenuItem({ pizza }) {
     pizza;
 
   const dispatch = useDispatch();
+
+  const currentQuantity = useSelector(
+    (state) =>
+      state.cart.cart.find((item) => item.id === id)?.quantity
+  );
+  const inCart = currentQuantity > 0;
 
   function handleClick() {
     const newItem = {
@@ -44,7 +51,8 @@ function MenuItem({ pizza }) {
               Sold out
             </p>
           )}
-          {!soldOut && (
+          {inCart && <ButtonDelete id={id} />}
+          {!soldOut && !inCart && (
             <Button handleClick={handleClick} type="small">
               Add to cart
             </Button>
