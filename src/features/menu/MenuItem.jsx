@@ -3,7 +3,7 @@ import React from "react";
 import { formatCurrency } from "../../util/helpers";
 import Button from "../../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../cart/cartSlice";
+import { addItem, getCurrentQuantity } from "../cart/cartSlice";
 import ButtonDelete from "../cart/ButtonDelete";
 
 // eslint-disable-next-line react/prop-types
@@ -14,10 +14,7 @@ function MenuItem({ pizza }) {
 
   const dispatch = useDispatch();
 
-  const currentQuantity = useSelector(
-    (state) =>
-      state.cart.cart.find((item) => item.id === id)?.quantity
-  );
+  const currentQuantity = useSelector(getCurrentQuantity(id));
   const inCart = currentQuantity > 0;
 
   function handleClick() {
