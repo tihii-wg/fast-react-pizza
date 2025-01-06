@@ -2,6 +2,13 @@ import React from "react";
 
 import { formatCurrency } from "../../util/helpers";
 import ButtonDelete from "./ButtonDelete";
+import UpdateQuantityItem from "./UpdateQantityItem";
+import { useSelector } from "react-redux";
+import {
+  getTotalPizzaPrice,
+  getTotalPizzaQuantity,
+  getCurrentQuantityById,
+} from "./cartSlice";
 
 function CartItem({ item }) {
   const { id, name, quantity, totalPrice } = item;
@@ -15,6 +22,7 @@ function CartItem({ item }) {
         <p className="text-sm font-bold">
           {formatCurrency(totalPrice)}
         </p>
+        <UpdateQuantityItem id={id} />
         <ButtonDelete id={id} />
       </div>
     </li>

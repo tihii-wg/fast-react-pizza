@@ -3,8 +3,9 @@ import React from "react";
 import { formatCurrency } from "../../util/helpers";
 import Button from "../../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, getCurrentQuantity } from "../cart/cartSlice";
+import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import ButtonDelete from "../cart/ButtonDelete";
+import UpdateQuantityItem from "../cart/UpdateQantityItem";
 
 // eslint-disable-next-line react/prop-types
 function MenuItem({ pizza }) {
@@ -14,7 +15,7 @@ function MenuItem({ pizza }) {
 
   const dispatch = useDispatch();
 
-  const currentQuantity = useSelector(getCurrentQuantity(id));
+  const currentQuantity = useSelector(getCurrentQuantityById(id));
   const inCart = currentQuantity > 0;
 
   function handleClick() {
@@ -23,7 +24,7 @@ function MenuItem({ pizza }) {
       name,
       quantity: 1,
       unitPrice,
-      totalPrice: unitPrice,
+      totalPrice: unitPrice * 1,
     };
     dispatch(addItem(newItem));
   }
@@ -48,7 +49,13 @@ function MenuItem({ pizza }) {
               Sold out
             </p>
           )}
-          {inCart && <ButtonDelete id={id} />}
+          {inCart && (
+            <div className="flex items-center gap-4">
+              <UpdateQuantityItem id={id} />
+
+              <ButtonDelete id={id} />
+            </div>
+          )}
           {!soldOut && !inCart && (
             <Button handleClick={handleClick} type="small">
               Add to cart
