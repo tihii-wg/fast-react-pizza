@@ -11,6 +11,7 @@ import {
   formatDate,
 } from "../../util/helpers";
 import { useFetcher, useLoaderData } from "react-router-dom";
+import UpdateOrder from "./UpdateOrder";
 
 // const order = {
 //   id: "ABCDEF",
@@ -127,6 +128,8 @@ function Order() {
           {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+
+      {!priority && <UpdateOrder order={order} />}
     </div>
   );
 }
