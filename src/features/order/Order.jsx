@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect } from "react";
 
 import { getOrder } from "../../services/apiRestaurant";
 import OrderItem from "./OrderItem";
@@ -10,7 +10,7 @@ import {
   formatCurrency,
   formatDate,
 } from "../../util/helpers";
-import { useLoaderData } from "react-router-dom";
+import { useFetcher, useLoaderData } from "react-router-dom";
 
 // const order = {
 //   id: "ABCDEF",
@@ -49,6 +49,8 @@ import { useLoaderData } from "react-router-dom";
 
 function Order() {
   const order = useLoaderData();
+  const fetcher = useFetcher();
+
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
     id,
@@ -61,6 +63,14 @@ function Order() {
   } = order;
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
+  const isLoadingIngredients = fetcher.state === "loading";
+  useEffect(
+    function () {
+      if (!fetcher.data && fetcher.state == "idle")
+        fetcher.load("/menu");
+    },
+    [fetcher]
+  );
 
   return (
     <div className="space-y-8 px-6 py-5">
@@ -91,7 +101,15 @@ function Order() {
 
       <ul className="divide-y divide-stone-200 border-y px-2">
         {cart.map((item) => (
-          <OrderItem item={item} key={item.pizzaId} />
+          <OrderItem
+            item={item}
+            key={item.pizzaId}
+            isLoadingIngredients={isLoadingIngredients}
+            ingredients={
+              fetcher.data?.find((el) => el.id === item.pizzaId)
+                .ingredients
+            }
+          />
         ))}
       </ul>
 
@@ -113,6 +131,7 @@ function Order() {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export async function loader({ params }) {
   const order = await getOrder(params.id);
   return order;

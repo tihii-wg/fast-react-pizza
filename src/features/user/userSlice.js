@@ -32,7 +32,7 @@ const userSlice = createSlice({
     userName: "",
     loading: "idle",
     address: "",
-    osition: {},
+    position: "",
     error: "",
   },
   reducers: {
@@ -46,13 +46,14 @@ const userSlice = createSlice({
         state.loading = "loading";
       })
       .addCase(fetchAddress.fulfilled, (state, action) => {
-        state.position = action.payload.position;
         state.address = action.payload.address;
+        state.position = action.payload.position;
         state.loading = "idle";
       })
       .addCase(fetchAddress.rejected, (state) => {
         state.error =
           "There was a problem getting your address.Make sure to fill this field!";
+        state.loading = "rejected";
       });
   },
 });
